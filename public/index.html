@@ -1,0 +1,2034 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>React Build Book</title>
+<meta name="description" content="Ten small React builds for beginners. Each one adds one new idea, and most fetch real data from the class API.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='12' width='26' height='16' rx='3' fill='%23d8382a' stroke='%2316203a' stroke-width='2'/%3E%3Crect x='7' y='6' width='7' height='7' rx='1.5' fill='%23d8382a' stroke='%2316203a' stroke-width='2'/%3E%3Crect x='18' y='6' width='7' height='7' rx='1.5' fill='%23d8382a' stroke='%2316203a' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="starter.css">
+<link rel="stylesheet" href="styles.css">
+<script>
+  try {
+    const theme = JSON.parse(localStorage.getItem("rbb-theme"));
+    if (theme) document.documentElement.dataset.theme = theme;
+  } catch {}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to the builds</a>
+
+<header class="topbar">
+  <a class="brand" href="#top"><span class="brand-brick" aria-hidden="true"></span>React Build Book</a>
+  <form class="api-setting" id="api-form">
+    <label for="api-url">API address</label>
+    <input class="field" id="api-url" type="url" spellcheck="false" autocomplete="off">
+    <span class="api-status" id="api-status" role="status">Checking</span>
+  </form>
+  <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch between light and dark">
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+<nav class="toc" aria-label="Builds">
+  <p class="toc-heading">Builds</p>
+  <ol class="toc-list" id="toc-builds"></ol>
+  <p class="toc-heading">Reference</p>
+  <ul class="toc-list">
+    <li><a class="toc-link" href="#api"><span class="toc-plain" aria-hidden="true">{ }</span>Class API</a></li>
+    <li><a class="toc-link" href="#help"><span class="toc-plain" aria-hidden="true">?</span>When something breaks</a></li>
+  </ul>
+</nav>
+
+<main class="content" id="content">
+
+<section class="hero" id="top">
+  <h1 class="hero-title">React Build Book</h1>
+  <ol class="brickrow" id="brickrow" aria-label="Your progress"></ol>
+  <p class="progress-text" id="progress-text" aria-live="polite"></p>
+  <ol class="howto">
+    <li><strong>Read the notes first</strong>Each build points back to a section of the React introduction notes.</li>
+    <li><strong>Build along</strong>Look at the finished model, then follow the steps in your own project.</li>
+    <li><strong>Tick off each step</strong>Finished builds snap into the row above. Your progress is saved in this browser.</li>
+  </ol>
+</section>
+
+<!-- ============================================================
+     BUILD 0
+     ============================================================ -->
+<section class="build c-grey" id="build-0">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">0</div>
+    <div>
+      <h2 class="build-title">Set up your project</h2>
+      <ul class="parts" aria-label="Parts used">
+        <li class="part c-grey">Node.js</li>
+        <li class="part c-grey">Vite</li>
+        <li class="part c-yellow">JSX</li>
+      </ul>
+    </div>
+  </header>
+  <div class="intro">
+    <p>Every build in this book lives in one React project on your laptop. You'll create it with Vite, a tool that sets React up for you and refreshes the page each time you save.</p>
+  </div>
+
+  <figure class="model" data-preview="static">
+    <template>
+      <h1>Hello from React 👋</h1>
+      <p class="muted">If you can read this in your own browser, you're ready for Build 1.</p>
+    </template>
+  </figure>
+
+  <h3 class="section-title">Steps</h3>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Check that Node.js is installed</h4>
+        <p>Open a terminal (in VS Code: <kbd>Ctrl</kbd> + <kbd>`</kbd>) and run:</p>
+<script type="text/plain" data-code="bash">
+node -v
+npm -v
+</script>
+        <p>You need Node <strong>22.12 or newer</strong>. If the command isn't found or the number is lower, install the LTS version from <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a>, then close and reopen the terminal.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Create the project</h4>
+        <p>Go to the folder where you keep your coursework and run:</p>
+<script type="text/plain" data-code="bash">
+npm create vite@latest react-playground -- --template react
+</script>
+        <p>This makes a folder called <code>react-playground</code> with a small React app inside. If npm asks <em>"Ok to proceed?"</em>, type <kbd>y</kbd> and press <kbd>Enter</kbd>.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Install and start it</h4>
+<script type="text/plain" data-code="bash">
+cd react-playground
+npm install
+npm run dev
+</script>
+        <p>Open the address it prints, usually <code>http://localhost:5173</code>. You'll see the Vite + React demo page with a counter. Keep this terminal running while you work. <kbd>Ctrl</kbd> + <kbd>C</kbd> stops it.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Look around</h4>
+        <p>Open the <code>react-playground</code> folder in VS Code. These are the files that matter:</p>
+        <table class="filetable">
+          <thead><tr><th scope="col">File</th><th scope="col">What it does</th></tr></thead>
+          <tbody>
+            <tr><td><code>index.html</code></td><td>The only HTML page. It has an empty <code>&lt;div id="root"&gt;</code> that React fills in.</td></tr>
+            <tr><td><code>src/main.jsx</code></td><td>Starts React and puts <code>&lt;App /&gt;</code> inside <code>#root</code>. You'll rarely touch it.</td></tr>
+            <tr><td><code>src/App.jsx</code></td><td>Your root component, the top of the tree. You'll edit it in every build.</td></tr>
+            <tr><td><code>src/index.css</code></td><td>Styles for the whole app.</td></tr>
+            <tr><td><code>package.json</code></td><td>The project's name, its scripts (like <code>npm run dev</code>) and the libraries it uses.</td></tr>
+            <tr><td><code>node_modules/</code></td><td>Downloaded libraries. Never edit it and never upload it.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Clear out the demo</h4>
+        <p>Replace everything in <code>src/App.jsx</code> with this:</p>
+<script type="text/plain" data-code="jsx" data-file="src/App.jsx">
+function App() {
+  return (
+    <div className="app">
+      <h1>Hello from React 👋</h1>
+    </div>
+  );
+}
+
+export default App;
+</script>
+        <p>Then delete <code>src/App.css</code> and the <code>src/assets</code> folder. The new App doesn't use them.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Add the starter styles</h4>
+        <p>Replace everything in <code>src/index.css</code> with the styles below. They give your builds a clean look, so you can spend your time on React. Change them as much as you like.</p>
+<script type="text/plain" data-code="css" data-file="src/index.css" data-src="starter.css">
+Loading the starter styles…
+</script>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Save the API address</h4>
+        <p>Create a new file, <code>src/api.js</code>:</p>
+<script type="text/plain" data-code="js" data-file="src/api.js">
+// The address of the class API. Every fetch() in this project starts with it.
+export const API_URL = "{{API_URL}}";
+</script>
+        <p>If your instructor gives you a new address later, this is the only line you change.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Peek at the API</h4>
+        <p>Open <a data-api="/api/jokes/random" target="_blank" rel="noopener"></a> in a new tab and refresh it a few times. That text is JSON, and it's exactly what your React code will fetch from Build 4 on.</p>
+      </div>
+    </li>
+  </ol>
+
+  <aside class="callout callout-note">
+    <p class="callout-title">Notice this</p>
+    <p>With <code>npm run dev</code> running, change the text inside <code>&lt;h1&gt;</code> and save. The browser updates by itself. No refresh needed.</p>
+  </aside>
+
+  <div class="helpers">
+    <div class="hints">
+      <h4 class="helper-title">Stuck?</h4>
+      <ol class="hint-list">
+        <li><p><strong>"npm is not recognized" or "command not found":</strong> Node isn't installed, or the terminal was opened before you installed it. Close it and open a new one.</p></li>
+        <li><p><strong>"Port 5173 is in use":</strong> Vite picks the next free port, like 5174. Use whichever address the terminal prints.</p></li>
+        <li><p><strong>A blank white page:</strong> open DevTools (<kbd>F12</kbd>), go to the Console tab and read the first red error. It names the file and the line.</p></li>
+      </ol>
+      <button class="gbtn hint-btn" type="button">Show a hint</button>
+    </div>
+    <div class="quiz">
+      <h4 class="helper-title">Quick check</h4>
+      <p class="quiz-q"><code>npm run dev</code> is running and you save a change to <code>App.jsx</code>. What do you need to do to see it?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" type="button">Run <code>npm install</code> again</button>
+        <button class="quiz-opt" type="button">Stop the server and run <code>npm run dev</code> again</button>
+        <button class="quiz-opt" type="button" data-correct>Nothing. Vite updates the page for you</button>
+        <button class="quiz-opt" type="button">Build the project with <code>npm run build</code></button>
+      </div>
+      <p class="quiz-feedback" aria-live="polite"></p>
+      <p class="quiz-explain">Vite watches your files. When you save, it swaps the changed code into the open page. You only restart it if you stop the terminal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUILD 1
+     ============================================================ -->
+<section class="build c-yellow" id="build-1">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">1</div>
+    <div>
+      <h2 class="build-title">Page skeleton</h2>
+      <ul class="parts" aria-label="Parts used">
+        <li class="part c-yellow">Components</li>
+        <li class="part c-yellow">JSX</li>
+        <li class="part c-grey">import / export</li>
+      </ul>
+    </div>
+  </header>
+  <div class="intro">
+    <p>Cut the page into boxes. You'll make a <code>Header</code> and a <code>Footer</code> component and snap them into <code>App</code>. Every later build goes in the space between them. Notes: sections 3 and 4.</p>
+  </div>
+
+  <figure class="model" data-preview="static">
+    <template>
+      <header class="header"><h1>😂 Joke Hub</h1><p>My React playground</p></header>
+      <div class="main"><p class="placeholder">Your builds will appear here.</p></div>
+      <footer class="footer"><p>Made with ❤️ by Riya in <span data-year></span></p></footer>
+    </template>
+  </figure>
+
+  <h3 class="section-title">Steps</h3>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Make a components folder</h4>
+        <p>Inside <code>src</code>, create a folder called <code>components</code>. Every component you build goes in here, one file each.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Build the Header</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/Header.jsx" data-solution>
+function Header() {
+  return (
+    <header className="header">
+      <h1>😂 Joke Hub</h1>
+      <p>My React playground</p>
+    </header>
+  );
+}
+
+export default Header;
+</script>
+        <p>A component is a function that returns JSX. Its name starts with a capital letter, and <code>export default</code> lets other files import it. In JSX you write <code>className</code> where HTML uses <code>class</code>.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Build the Footer</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/Footer.jsx" data-solution>
+const year = new Date().getFullYear();
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <p>Made with ❤️ by Riya in {year}</p>
+    </footer>
+  );
+}
+
+export default Footer;
+</script>
+        <p>Put your own name in. Anything inside <code>{ }</code> in JSX is plain JavaScript, so <code>{year}</code> shows the current year. It's worked out once, outside the component, because it doesn't change while the page is open.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Snap them into App</h4>
+<script type="text/plain" data-code="jsx" data-file="src/App.jsx">
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+function App() {
+  return (
+    <div className="app">
+      <Header />
+      <main className="main">
+        <p className="placeholder">Your builds will appear here.</p>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+</script>
+        <p>Once a component is imported, you use it like a custom HTML tag: <code>&lt;Header /&gt;</code>.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Check the browser</h4>
+        <p>You should see the header at the top and the footer at the bottom, like the finished model. From now on, each build goes inside <code>&lt;main&gt;</code>.</p>
+      </div>
+    </li>
+  </ol>
+
+  <aside class="callout callout-break">
+    <p class="callout-title">Try breaking it</p>
+    <p>Do each one, look at what happens, then undo it.</p>
+    <ul>
+      <li>In <code>App.jsx</code>, write <code>&lt;header /&gt;</code> instead of <code>&lt;Header /&gt;</code>. Your title disappears: lowercase names are treated as plain HTML tags.</li>
+      <li>In <code>Header.jsx</code>, change <code>className</code> to <code>class</code>. Open the Console (<kbd>F12</kbd>) and read React's warning.</li>
+      <li>Delete the <code>&lt;header&gt;</code> wrapper so the component returns an <code>&lt;h1&gt;</code> and a <code>&lt;p&gt;</code> side by side. JSX must return one parent element. An empty fragment, <code>&lt;&gt;…&lt;/&gt;</code>, fixes it without adding an extra tag.</li>
+    </ul>
+  </aside>
+
+  <aside class="callout callout-level">
+    <p class="callout-title">Level up</p>
+    <p>Make a <code>Notice</code> component that shows "🚧 Work in progress" inside a <code>&lt;div className="card"&gt;</code>, and put it in <code>&lt;main&gt;</code> twice. One component, two copies.</p>
+  </aside>
+
+  <div class="helpers">
+    <div class="hints">
+      <h4 class="helper-title">Stuck?</h4>
+      <ol class="hint-list">
+        <li><p>Does each component file end with <code>export default ComponentName;</code>?</p></li>
+        <li><p>Import paths start from the file you're in. From <code>App.jsx</code> it's <code>./components/Header</code>, with no <code>.jsx</code> needed.</p></li>
+        <li><p>Blank page? Open the Console (<kbd>F12</kbd>). The red error usually names the file and the line.</p></li>
+      </ol>
+      <button class="gbtn hint-btn" type="button">Show a hint</button>
+    </div>
+    <details class="solution">
+      <summary>Show the solution <span>Give it a real try first.</span></summary>
+      <div class="solution-body">
+        <p>The Header, Footer and App code in the steps above is the full solution. Here's the level-up:</p>
+<script type="text/plain" data-code="jsx" data-file="src/components/Notice.jsx" data-solution>
+function Notice() {
+  return <div className="card">🚧 Work in progress</div>;
+}
+
+export default Notice;
+</script>
+      </div>
+    </details>
+    <div class="quiz">
+      <h4 class="helper-title">Quick check</h4>
+      <p class="quiz-q">Why do we write <code>&lt;Header /&gt;</code> in App and not <code>&lt;header /&gt;</code>?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" type="button">Self-closing tags have to be capitalised</button>
+        <button class="quiz-opt" type="button" data-correct>Capitalised names are your components; lowercase names are plain HTML tags</button>
+        <button class="quiz-opt" type="button">It's only a style preference</button>
+        <button class="quiz-opt" type="button">Because the file is called Header.jsx</button>
+      </div>
+      <p class="quiz-feedback" aria-live="polite"></p>
+      <p class="quiz-explain">React looks at the first letter. <code>&lt;header&gt;</code> becomes a real HTML header tag; <code>&lt;Header&gt;</code> runs your Header function.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUILD 2
+     ============================================================ -->
+<section class="build c-blue" id="build-2">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">2</div>
+    <div>
+      <h2 class="build-title">Profile cards</h2>
+      <ul class="parts" aria-label="Parts used">
+        <li class="part c-blue">Props</li>
+        <li class="part c-blue">Lists and keys</li>
+        <li class="part c-yellow">Components</li>
+      </ul>
+    </div>
+  </header>
+  <div class="intro">
+    <p>One card design, many people. Props are the inputs you hand a component, so a single <code>ProfileCard</code> can show Riya, then Arjun, then Meera. Notes: section 5.</p>
+  </div>
+
+  <figure class="model" data-preview="profiles"></figure>
+
+  <h3 class="section-title">Steps</h3>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Look at the data</h4>
+        <p>Open <a data-api="/api/profiles" target="_blank" rel="noopener"></a>. Each person has an <code>id</code>, <code>name</code>, <code>role</code>, <code>city</code> and an <code>avatar</code> image address. Keep the tab open; you'll copy from it.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Make a card that takes props</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/ProfileCard.jsx" data-solution>
+function ProfileCard({ name, role, city, avatar }) {
+  return (
+    <article className="card profile-card">
+      <img className="avatar" src={avatar} alt={name} />
+      <h3>{name}</h3>
+      <p className="muted">{role}</p>
+      <span className="badge">📍 {city}</span>
+    </article>
+  );
+}
+
+export default ProfileCard;
+</script>
+        <p><code>{ name, role, city, avatar }</code> pulls each prop out of the props object, so you can write <code>name</code> instead of <code>props.name</code>.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Use it three times</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/ProfileGallery.jsx">
+import ProfileCard from "./ProfileCard";
+import { API_URL } from "../api";
+
+function ProfileGallery() {
+  return (
+    <section className="grid">
+      <ProfileCard
+        name="Riya Sharma"
+        role="Frontend Developer"
+        city="Pune"
+        avatar={`${API_URL}/api/avatars/riya-sharma.svg`}
+      />
+      <ProfileCard
+        name="Arjun Mehta"
+        role="Backend Developer"
+        city="Ahmedabad"
+        avatar={`${API_URL}/api/avatars/arjun-mehta.svg`}
+      />
+      <ProfileCard
+        name="Meera Iyer"
+        role="UI/UX Designer"
+        city="Chennai"
+        avatar={`${API_URL}/api/avatars/meera-iyer.svg`}
+      />
+    </section>
+  );
+}
+
+export default ProfileGallery;
+</script>
+        <p>Text props go in quotes. Everything else (numbers, variables, template strings) goes in curly braces. Then show it in App:</p>
+<script type="text/plain" data-code="jsx" data-file="src/App.jsx (changes only)">
+import ProfileGallery from "./components/ProfileGallery";
+
+// ...inside the return:
+<main className="main">
+  <ProfileGallery />
+</main>
+</script>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Turn the copies into a list</h4>
+        <p>Three nearly identical blocks is a sign you want an array and <code>.map()</code>. Replace <code>ProfileGallery.jsx</code> with:</p>
+<script type="text/plain" data-code="jsx" data-file="src/components/ProfileGallery.jsx" data-solution>
+import ProfileCard from "./ProfileCard";
+import { API_URL } from "../api";
+
+const people = [
+  { id: 1, name: "Riya Sharma", role: "Frontend Developer", city: "Pune", avatar: `${API_URL}/api/avatars/riya-sharma.svg` },
+  { id: 2, name: "Arjun Mehta", role: "Backend Developer", city: "Ahmedabad", avatar: `${API_URL}/api/avatars/arjun-mehta.svg` },
+  { id: 3, name: "Meera Iyer", role: "UI/UX Designer", city: "Chennai", avatar: `${API_URL}/api/avatars/meera-iyer.svg` },
+];
+
+function ProfileGallery() {
+  return (
+    <section className="grid">
+      {people.map((person) => (
+        <ProfileCard
+          key={person.id}
+          name={person.name}
+          role={person.role}
+          city={person.city}
+          avatar={person.avatar}
+        />
+      ))}
+    </section>
+  );
+}
+
+export default ProfileGallery;
+</script>
+        <p><code>key</code> helps React tell the cards apart when the list changes. Use something unique that doesn't change, like an id.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Add a fourth person</h4>
+        <p>Copy Kabir Khan from the API into the <code>people</code> array. One new object gives you one new card, and you didn't write any new JSX. That's the point of props.</p>
+      </div>
+    </li>
+  </ol>
+
+  <aside class="callout callout-break">
+    <p class="callout-title">Try breaking it</p>
+    <ul>
+      <li>Remove <code>key={person.id}</code>. The page still works, but the Console warns: <em>Each child in a list should have a unique "key" prop.</em></li>
+      <li>Misspell a prop: <code>nmae={person.name}</code>. The name quietly disappears and React doesn't complain. When something is blank, check the spelling on both sides.</li>
+    </ul>
+  </aside>
+
+  <aside class="callout callout-level">
+    <p class="callout-title">Level up</p>
+    <ul>
+      <li>Pass <code>skills</code> (an array) and show each skill as a <code>badge</code> with <code>.map()</code>.</li>
+      <li>Pass <code>online</code> (true or false) and show <code>&lt;span className="badge badge-online"&gt;● Online&lt;/span&gt;</code> only when it's true: <code>{online &amp;&amp; …}</code>.</li>
+    </ul>
+  </aside>
+
+  <div class="helpers">
+    <div class="hints">
+      <h4 class="helper-title">Stuck?</h4>
+      <ol class="hint-list">
+        <li><p>Props are written like HTML attributes, <code>&lt;ProfileCard name="Riya Sharma" /&gt;</code>, and arrive in the card as <code>{ name }</code>.</p></li>
+        <li><p>A string with a variable inside uses backticks: <code>`${API_URL}/api/avatars/riya-sharma.svg`</code>.</p></li>
+        <li><p><code>.map()</code> has to return the JSX. With <code>=&gt; (</code> … <code>)</code> the return is automatic. With <code>=&gt; {</code> you need to write <code>return</code>.</p></li>
+      </ol>
+      <button class="gbtn hint-btn" type="button">Show a hint</button>
+    </div>
+    <details class="solution">
+      <summary>Show the solution <span>Give it a real try first.</span></summary>
+      <div class="solution-body">
+        <p><code>ProfileCard.jsx</code> and the list version of <code>ProfileGallery.jsx</code> in the steps are the solution. Here's the card with both level-ups:</p>
+<script type="text/plain" data-code="jsx" data-file="src/components/ProfileCard.jsx" data-solution="ProfileCardLevelUp">
+function ProfileCard({ name, role, city, avatar, skills, online }) {
+  return (
+    <article className="card profile-card">
+      <img className="avatar" src={avatar} alt={name} />
+      <h3>{name}</h3>
+      <p className="muted">{role}</p>
+      <div className="row">
+        <span className="badge">📍 {city}</span>
+        {online && <span className="badge badge-online">● Online</span>}
+      </div>
+      <div className="row">
+        {skills.map((skill) => (
+          <span key={skill} className="badge">{skill}</span>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+export default ProfileCard;
+</script>
+      </div>
+    </details>
+    <div class="quiz">
+      <h4 class="helper-title">Quick check</h4>
+      <p class="quiz-q">A ProfileCard wants to change the <code>name</code> it was given when someone clicks it. What's the right move?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" type="button">Assign it: <code>props.name = "New name"</code></button>
+        <button class="quiz-opt" type="button" data-correct>Props are read-only. A value that changes should be state, owned by whoever owns the data</button>
+        <button class="quiz-opt" type="button">Call <code>setName</code>, which every prop comes with</button>
+        <button class="quiz-opt" type="button">Import ProfileCard again</button>
+      </div>
+      <p class="quiz-feedback" aria-live="polite"></p>
+      <p class="quiz-explain">Props are like your name on a birth certificate: you use it, you don't rewrite it. Changing data is state, which you'll meet in the next build.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUILD 3
+     ============================================================ -->
+<section class="build c-red" id="build-3">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">3</div>
+    <div>
+      <h2 class="build-title">A joke card with a memory</h2>
+      <ul class="parts" aria-label="Parts used">
+        <li class="part c-red">useState</li>
+        <li class="part c-red">Events</li>
+        <li class="part c-yellow">Showing things conditionally</li>
+      </ul>
+    </div>
+  </header>
+  <div class="intro">
+    <p>This card remembers two things: whether its punchline is showing, and how many likes it has. That memory is <strong>state</strong>. When it changes, React redraws the card for you. Notes: sections 6 and 7.</p>
+  </div>
+
+  <figure class="model" data-preview="jokeCards" data-note="Click around. Each card keeps its own count."></figure>
+
+  <h3 class="section-title">Steps</h3>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Start with a static card</h4>
+        <p>Make it look right first, with props only and no interaction (step 3 of Thinking in React).</p>
+<script type="text/plain" data-code="jsx" data-file="src/components/JokeCard.jsx">
+function JokeCard({ setup, punchline }) {
+  return (
+    <article className="card">
+      <p className="setup">{setup}</p>
+      <p className="punchline">{punchline}</p>
+    </article>
+  );
+}
+
+export default JokeCard;
+</script>
+        <p>Show two of them in App:</p>
+<script type="text/plain" data-code="jsx" data-file="src/App.jsx (changes only)">
+import JokeCard from "./components/JokeCard";
+
+// ...inside the return:
+<main className="main">
+  <div className="grid">
+    <JokeCard
+      setup="Why do programmers prefer dark mode?"
+      punchline="Because light attracts bugs."
+    />
+    <JokeCard
+      setup="Why did the React developer bring a ladder to work?"
+      punchline="To lift the state up."
+    />
+  </div>
+</main>
+</script>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Give it a memory</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/JokeCard.jsx (top of the file)">
+import { useState } from "react";
+
+function JokeCard({ setup, punchline }) {
+  const [showPunchline, setShowPunchline] = useState(false);
+</script>
+        <p>Read it aloud: "I need a piece of state called <code>showPunchline</code>, starting at <code>false</code>, and <code>setShowPunchline</code> is how I'll change it."</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Hide the punchline until clicked</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/JokeCard.jsx (the return)">
+  return (
+    <article className="card">
+      <p className="setup">{setup}</p>
+      {showPunchline && <p className="punchline">{punchline}</p>}
+      <button className="btn" onClick={() => setShowPunchline(!showPunchline)}>
+        {showPunchline ? "Hide punchline" : "Show punchline"}
+      </button>
+    </article>
+  );
+</script>
+        <p><code>a &amp;&amp; b</code> shows <code>b</code> only when <code>a</code> is true. <code>a ? b : c</code> picks one of two things. Both are plain JavaScript.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Count likes</h4>
+        <p>Add a second piece of state, and a second button next to the first inside a <code>&lt;div className="row"&gt;</code>:</p>
+<script type="text/plain" data-code="jsx">
+const [likes, setLikes] = useState(0);
+
+<button className="btn btn-secondary" onClick={() => setLikes(likes + 1)}>
+  ❤️ {likes}
+</button>
+</script>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Prove each card has its own memory</h4>
+        <p>Like the first card three times. The second one still says 0. Every JokeCard you place gets its own state.</p>
+      </div>
+    </li>
+  </ol>
+
+  <aside class="callout callout-break">
+    <p class="callout-title">Try breaking it</p>
+    <p>Swap the likes state for a normal variable, click a few times, and watch the Console:</p>
+<script type="text/plain" data-code="jsx">
+let likes = 0;
+
+<button className="btn btn-secondary" onClick={() => { likes = likes + 1; console.log(likes); }}>
+  ❤️ {likes}
+</button>
+</script>
+    <p>The Console counts up; the screen stays at 0. React only redraws when state changes through its setter. Put <code>useState</code> back.</p>
+  </aside>
+
+  <aside class="callout callout-level">
+    <p class="callout-title">Level up</p>
+    <ul>
+      <li>Turn the like button into an on/off toggle, like Instagram: a <code>liked</code> true/false state, and add the <code>liked</code> class to the button when it's on. The count becomes <code>liked ? 1 : 0</code>, which is worked out, not stored.</li>
+      <li>Only show the like button after the punchline is revealed.</li>
+    </ul>
+  </aside>
+
+  <div class="helpers">
+    <div class="hints">
+      <h4 class="helper-title">Stuck?</h4>
+      <ol class="hint-list">
+        <li><p>Import the hook at the top: <code>import { useState } from "react";</code></p></li>
+        <li><p>Give <code>onClick</code> a function: <code>onClick={() =&gt; setLikes(likes + 1)}</code>. Writing <code>onClick={setLikes(likes + 1)}</code> calls it straight away during drawing, which causes a "Too many re-renders" error.</p></li>
+        <li><p><code>!showPunchline</code> flips <code>true</code> to <code>false</code> and back.</p></li>
+        <li><p>Adding a class only sometimes: <code>className={liked ? "btn btn-secondary liked" : "btn btn-secondary"}</code>.</p></li>
+      </ol>
+      <button class="gbtn hint-btn" type="button">Show a hint</button>
+    </div>
+    <details class="solution">
+      <summary>Show the solution <span>Give it a real try first.</span></summary>
+      <div class="solution-body">
+<script type="text/plain" data-code="jsx" data-file="src/components/JokeCard.jsx" data-solution>
+import { useState } from "react";
+
+function JokeCard({ setup, punchline }) {
+  const [showPunchline, setShowPunchline] = useState(false);
+  const [likes, setLikes] = useState(0);
+
+  return (
+    <article className="card">
+      <p className="setup">{setup}</p>
+      {showPunchline && <p className="punchline">{punchline}</p>}
+      <div className="row">
+        <button className="btn" onClick={() => setShowPunchline(!showPunchline)}>
+          {showPunchline ? "Hide punchline" : "Show punchline"}
+        </button>
+        <button className="btn btn-secondary" onClick={() => setLikes(likes + 1)}>
+          ❤️ {likes}
+        </button>
+      </div>
+    </article>
+  );
+}
+
+export default JokeCard;
+</script>
+      </div>
+    </details>
+    <div class="quiz">
+      <h4 class="helper-title">Quick check</h4>
+      <p class="quiz-q">You click ❤️ three times on the first JokeCard. What does the second JokeCard show?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" type="button">3, because they're the same component</button>
+        <button class="quiz-opt" type="button" data-correct>0, because each copy of a component has its own state</button>
+        <button class="quiz-opt" type="button">3, but only after a refresh</button>
+        <button class="quiz-opt" type="button">An error, because two cards can't share <code>likes</code></button>
+      </div>
+      <p class="quiz-feedback" aria-live="polite"></p>
+      <p class="quiz-explain">A component is a blueprint. Each <code>&lt;JokeCard /&gt;</code> you place is a separate copy with its own memory.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUILD 4
+     ============================================================ -->
+<section class="build c-green" id="build-4">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">4</div>
+    <div>
+      <h2 class="build-title">Random joke machine</h2>
+      <ul class="parts" aria-label="Parts used">
+        <li class="part c-green">useEffect</li>
+        <li class="part c-green">fetch</li>
+        <li class="part c-red">Loading state</li>
+      </ul>
+    </div>
+  </header>
+  <div class="intro">
+    <p>Your first call to the API. The card loads a random joke as soon as it appears, and a button fetches another. Fetching is a <strong>side effect</strong>: work that reaches outside the screen. Notes: section 8.</p>
+  </div>
+
+  <figure class="model" data-preview="randomJoke"></figure>
+
+  <h3 class="section-title">Steps</h3>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Set up the component</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/RandomJoke.jsx (top of the file)">
+import { useEffect, useState } from "react";
+import { API_URL } from "../api";
+
+function fetchRandomJoke() {
+  return fetch(`${API_URL}/api/jokes/random`).then((response) => response.json());
+}
+
+function RandomJoke() {
+  const [joke, setJoke] = useState(null);
+</script>
+        <p><code>fetchRandomJoke</code> sits outside the component because it doesn't need any state. <code>joke</code> starts as <code>null</code>: nothing has arrived yet.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Load a joke when the card appears</h4>
+<script type="text/plain" data-code="jsx">
+  useEffect(() => {
+    fetchRandomJoke().then((data) => setJoke(data));
+  }, []);
+</script>
+        <p>The empty list <code>[]</code> means "run once, after the component first appears on screen".</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Show "Loading", then the joke</h4>
+<script type="text/plain" data-code="jsx">
+  if (joke === null) {
+    return <p className="card muted">Loading a joke…</p>;
+  }
+
+  return (
+    <article className="card">
+      <span className="badge">{joke.category}</span>
+      <p className="setup">{joke.setup}</p>
+      <p className="punchline">{joke.punchline}</p>
+      <button className="btn" onClick={handleAnotherClick}>Another joke</button>
+    </article>
+  );
+}
+
+export default RandomJoke;
+</script>
+        <p>The first time the component draws, <code>joke</code> is still <code>null</code>, so it shows the loading message. When the data arrives, <code>setJoke</code> triggers a redraw with the real joke.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Make the button fetch another</h4>
+        <p>Add this inside the component, above the <code>if</code>:</p>
+<script type="text/plain" data-code="jsx">
+  function handleAnotherClick() {
+    setJoke(null);
+    fetchRandomJoke().then((data) => setJoke(data));
+  }
+</script>
+        <p>Clearing the joke first brings the loading message back while the next one is on its way. Then put <code>&lt;RandomJoke /&gt;</code> in App's <code>&lt;main&gt;</code>.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Watch it happen</h4>
+        <p>Add <code>?delay=2000</code> to the address in <code>fetchRandomJoke</code> to make the API wait two seconds, so you can see the loading message. Open DevTools → <strong>Network</strong>, click the button, and click the request to see the JSON. Take the delay out when you're done.</p>
+      </div>
+    </li>
+  </ol>
+
+  <aside class="callout callout-note">
+    <p class="callout-title">Why two requests?</p>
+    <p>In development, React runs effects twice when a component first appears, to help you spot effects that don't clean up after themselves. You'll see two requests in the Network tab. A built app only runs it once.</p>
+  </aside>
+
+  <aside class="callout callout-break">
+    <p class="callout-title">Try breaking it</p>
+    <p>Delete the <code>[]</code> from <code>useEffect</code> and watch the Network tab. Every <code>setJoke</code> redraws, every redraw runs the effect, and every effect calls <code>setJoke</code> again. Put the <code>[]</code> back quickly.</p>
+  </aside>
+
+  <aside class="callout callout-level">
+    <p class="callout-title">Level up</p>
+    <ul>
+      <li><strong>Handle errors.</strong> Add <code>?fail=true</code> to the address to make the API fail on purpose. Add an <code>error</code> state and show a friendly <code>&lt;p className="error"&gt;</code>. Careful: <code>fetch</code> doesn't throw on a 500, so check <code>response.ok</code>.</li>
+      <li><strong>Reuse Build 3.</strong> Show the joke with your <code>JokeCard</code> so the punchline stays hidden until clicked.</li>
+    </ul>
+  </aside>
+
+  <div class="helpers">
+    <div class="hints">
+      <h4 class="helper-title">Stuck?</h4>
+      <ol class="hint-list">
+        <li><p>Import both hooks: <code>import { useEffect, useState } from "react";</code></p></li>
+        <li><p><em>Cannot read properties of null (reading 'setup')</em> means you read <code>joke.setup</code> before the joke arrived. Return the loading message while <code>joke</code> is <code>null</code>.</p></li>
+        <li><p><em>Failed to fetch</em> usually means a wrong address. Check <code>API_URL</code> in <code>src/api.js</code>: no slash at the end, and the same address as the one at the top of this page.</p></li>
+        <li>
+          <p>For the error level-up:</p>
+<script type="text/plain" data-code="jsx">
+fetch(`${API_URL}/api/jokes/random?fail=true`)
+  .then((response) => {
+    if (!response.ok) throw new Error("The API answered with an error");
+    return response.json();
+  })
+  .then((data) => setJoke(data))
+  .catch(() => setError("Couldn't load a joke. Try again in a moment."));
+</script>
+        </li>
+      </ol>
+      <button class="gbtn hint-btn" type="button">Show a hint</button>
+    </div>
+    <details class="solution">
+      <summary>Show the solution <span>Give it a real try first.</span></summary>
+      <div class="solution-body">
+<script type="text/plain" data-code="jsx" data-file="src/components/RandomJoke.jsx" data-solution>
+import { useEffect, useState } from "react";
+import { API_URL } from "../api";
+
+function fetchRandomJoke() {
+  return fetch(`${API_URL}/api/jokes/random`).then((response) => response.json());
+}
+
+function RandomJoke() {
+  const [joke, setJoke] = useState(null);
+
+  useEffect(() => {
+    fetchRandomJoke().then((data) => setJoke(data));
+  }, []);
+
+  function handleAnotherClick() {
+    setJoke(null);
+    fetchRandomJoke().then((data) => setJoke(data));
+  }
+
+  if (joke === null) {
+    return <p className="card muted">Loading a joke…</p>;
+  }
+
+  return (
+    <article className="card">
+      <span className="badge">{joke.category}</span>
+      <p className="setup">{joke.setup}</p>
+      <p className="punchline">{joke.punchline}</p>
+      <button className="btn" onClick={handleAnotherClick}>Another joke</button>
+    </article>
+  );
+}
+
+export default RandomJoke;
+</script>
+      </div>
+    </details>
+    <div class="quiz">
+      <h4 class="helper-title">Quick check</h4>
+      <p class="quiz-q">Why does the fetch go inside <code>useEffect</code> instead of straight in the component body?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" type="button"><code>fetch</code> only works inside hooks</button>
+        <button class="quiz-opt" type="button" data-correct>The body runs on every render, so the fetch would run again after every <code>setJoke</code>, forever</button>
+        <button class="quiz-opt" type="button"><code>useEffect</code> makes the request faster</button>
+        <button class="quiz-opt" type="button">So the joke loads before the page is drawn</button>
+      </div>
+      <p class="quiz-feedback" aria-live="polite"></p>
+      <p class="quiz-explain">The component function runs on every redraw. An effect with <code>[]</code> runs once, after the first draw, which is exactly when you want to start loading.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUILD 5
+     ============================================================ -->
+<section class="build c-green" id="build-5">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">5</div>
+    <div>
+      <h2 class="build-title">Weather by city</h2>
+      <ul class="parts" aria-label="Parts used">
+        <li class="part c-green">Dependency list</li>
+        <li class="part c-red">Controlled inputs</li>
+        <li class="part c-green">fetch</li>
+      </ul>
+    </div>
+  </header>
+  <div class="intro">
+    <p>Pick a city, get its weather. The effect has to run again every time the city changes, and the dependency list is how you tell React. Notes: section 8, "When does an effect run again?"</p>
+  </div>
+
+  <figure class="model" data-preview="weather" data-note="The weather is made up, but it stays the same for each city for an hour."></figure>
+
+  <h3 class="section-title">Steps</h3>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Three pieces of state</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/WeatherWidget.jsx (top of the file)">
+import { useEffect, useState } from "react";
+import { API_URL } from "../api";
+
+function WeatherWidget() {
+  const [cities, setCities] = useState([]);
+  const [city, setCity] = useState("Mumbai");
+  const [weather, setWeather] = useState(null);
+</script>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Load the list of cities once</h4>
+<script type="text/plain" data-code="jsx">
+  useEffect(() => {
+    fetch(`${API_URL}/api/weather/cities`)
+      .then((response) => response.json())
+      .then((data) => setCities(data));
+  }, []);
+</script>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Load the weather whenever the city changes</h4>
+<script type="text/plain" data-code="jsx">
+  useEffect(() => {
+    fetch(`${API_URL}/api/weather?city=${city}`)
+      .then((response) => response.json())
+      .then((data) => setWeather(data));
+  }, [city]);
+</script>
+        <p><code>[city]</code> means "run after the first render, and again whenever <code>city</code> is different from last time". Two effects is fine: each one does one job.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Add the dropdown</h4>
+<script type="text/plain" data-code="jsx">
+  function handleCityChange(event) {
+    setCity(event.target.value);
+    setWeather(null);
+  }
+
+  return (
+    <section className="card stack">
+      <select className="input" value={city} onChange={handleCityChange}>
+        {cities.map((name) => (
+          <option key={name} value={name}>
+            {name}
+          </option>
+        ))}
+      </select>
+      {/* the weather goes here in the next step */}
+    </section>
+  );
+}
+
+export default WeatherWidget;
+</script>
+        <p><code>value={city}</code> plus <code>onChange</code> makes this a <strong>controlled input</strong>: state decides what the dropdown shows, and every change goes through state.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Show the weather</h4>
+        <p>Replace the comment with:</p>
+<script type="text/plain" data-code="jsx">
+      {weather === null ? (
+        <p className="muted">Loading weather…</p>
+      ) : (
+        <div>
+          <p className="big">
+            {weather.emoji} {weather.temperature}°C
+          </p>
+          <p>
+            {weather.condition} in {weather.city}, {weather.country}
+          </p>
+          <div className="row">
+            <span className="badge">Feels like {weather.feelsLike}°C</span>
+            <span className="badge">💧 {weather.humidity}%</span>
+            <span className="badge">💨 {weather.windKph} km/h</span>
+          </div>
+        </div>
+      )}
+</script>
+        <p>Put <code>&lt;WeatherWidget /&gt;</code> in App and switch between cities.</p>
+      </div>
+    </li>
+  </ol>
+
+  <aside class="callout callout-break">
+    <p class="callout-title">Try breaking it</p>
+    <p>Change <code>[city]</code> to <code>[]</code>, then pick another city. It says "Loading weather…" forever, because the effect never runs again. Put <code>city</code> back.</p>
+  </aside>
+
+  <aside class="callout callout-level">
+    <p class="callout-title">Level up</p>
+    <ul>
+      <li>Add a °C / °F button. Keep only the unit (<code>"C"</code> or <code>"F"</code>) in state, and calculate °F while drawing: <code>Math.round(c * 9 / 5 + 32)</code>. A temperature in °F isn't new state; it's a sum.</li>
+      <li>Open <a data-api="/api/weather?city=Atlantis" target="_blank" rel="noopener"></a> in the browser. Unknown cities get an <code>error</code> field. Make your widget show it in a <code>&lt;p className="error"&gt;</code>.</li>
+    </ul>
+  </aside>
+
+  <div class="helpers">
+    <div class="hints">
+      <h4 class="helper-title">Stuck?</h4>
+      <ol class="hint-list">
+        <li><p>Inside <code>onChange</code>, the chosen city is <code>event.target.value</code>.</p></li>
+        <li><p>Stuck on "Loading weather…"? Check that the second effect's list is <code>[city]</code>.</p></li>
+        <li><p>Empty dropdown? Check the first effect calls <code>setCities</code>, and that each <code>&lt;option&gt;</code> has a <code>key</code> and a <code>value</code>.</p></li>
+      </ol>
+      <button class="gbtn hint-btn" type="button">Show a hint</button>
+    </div>
+    <details class="solution">
+      <summary>Show the solution <span>Give it a real try first.</span></summary>
+      <div class="solution-body">
+<script type="text/plain" data-code="jsx" data-file="src/components/WeatherWidget.jsx" data-solution>
+import { useEffect, useState } from "react";
+import { API_URL } from "../api";
+
+function WeatherWidget() {
+  const [cities, setCities] = useState([]);
+  const [city, setCity] = useState("Mumbai");
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/weather/cities`)
+      .then((response) => response.json())
+      .then((data) => setCities(data));
+  }, []);
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/weather?city=${city}`)
+      .then((response) => response.json())
+      .then((data) => setWeather(data));
+  }, [city]);
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+    setWeather(null);
+  }
+
+  return (
+    <section className="card stack">
+      <select className="input" value={city} onChange={handleCityChange}>
+        {cities.map((name) => (
+          <option key={name} value={name}>
+            {name}
+          </option>
+        ))}
+      </select>
+      {weather === null ? (
+        <p className="muted">Loading weather…</p>
+      ) : (
+        <div>
+          <p className="big">
+            {weather.emoji} {weather.temperature}°C
+          </p>
+          <p>
+            {weather.condition} in {weather.city}, {weather.country}
+          </p>
+          <div className="row">
+            <span className="badge">Feels like {weather.feelsLike}°C</span>
+            <span className="badge">💧 {weather.humidity}%</span>
+            <span className="badge">💨 {weather.windKph} km/h</span>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+export default WeatherWidget;
+</script>
+      </div>
+    </details>
+    <div class="quiz">
+      <h4 class="helper-title">Quick check</h4>
+      <p class="quiz-q">A weather widget should load new weather every time the selected city changes. What goes in its dependency list?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" type="button">Leave the list out</button>
+        <button class="quiz-opt" type="button"><code>[]</code></button>
+        <button class="quiz-opt" type="button" data-correct><code>[city]</code></button>
+        <button class="quiz-opt" type="button"><code>[weather]</code></button>
+      </div>
+      <p class="quiz-feedback" aria-live="polite"></p>
+      <p class="quiz-explain">List what the effect reads that can change: here, <code>city</code>. <code>[weather]</code> would loop, because the effect itself sets <code>weather</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUILD 6
+     ============================================================ -->
+<section class="build c-red" id="build-6">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">6</div>
+    <div>
+      <h2 class="build-title">Search the jokes</h2>
+      <ul class="parts" aria-label="Parts used">
+        <li class="part c-red">Lifting state up</li>
+        <li class="part c-blue">Functions as props</li>
+        <li class="part c-red">Calculated values</li>
+      </ul>
+    </div>
+  </header>
+  <div class="intro">
+    <p>A search box and a list are siblings, and siblings can't pass props to each other. So the search text lives in their parent and flows down to both. Notes: section 6, "Where should state live?"</p>
+  </div>
+
+  <figure class="model" data-preview="search" data-note="Try typing “bug” or “state”."></figure>
+
+  <h3 class="section-title">Steps</h3>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Plan who owns what</h4>
+<div class="tree">JokeSearch     <em>owns jokes and query</em>
+├─ SearchBar   <em>gets query, and onQueryChange to ask for changes</em>
+└─ JokeList    <em>gets only the jokes that match</em></div>
+        <p>Data flows down as props. Requests to change it go up through a function the parent passes down.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Build the search bar</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/SearchBar.jsx" data-solution>
+function SearchBar({ query, onQueryChange }) {
+  return (
+    <input
+      className="input"
+      type="search"
+      placeholder="Search jokes, like “bug”"
+      value={query}
+      onChange={(event) => onQueryChange(event.target.value)}
+    />
+  );
+}
+
+export default SearchBar;
+</script>
+        <p>SearchBar can't change <code>query</code> itself, because it doesn't own it. It calls <code>onQueryChange</code>, and the parent does the changing.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Build the list</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/JokeList.jsx" data-solution>
+function JokeList({ jokes }) {
+  return (
+    <ul className="list">
+      {jokes.map((joke) => (
+        <li key={joke.id} className="card">
+          <p className="setup">{joke.setup}</p>
+          <p className="punchline">{joke.punchline}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default JokeList;
+</script>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Build the parent</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/JokeSearch.jsx" data-solution>
+import { useEffect, useState } from "react";
+import { API_URL } from "../api";
+import SearchBar from "./SearchBar";
+import JokeList from "./JokeList";
+
+function JokeSearch() {
+  const [jokes, setJokes] = useState([]);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/jokes`)
+      .then((response) => response.json())
+      .then((data) => setJokes(data));
+  }, []);
+
+  const search = query.toLowerCase();
+  const visibleJokes = jokes.filter((joke) =>
+    `${joke.setup} ${joke.punchline}`.toLowerCase().includes(search)
+  );
+
+  return (
+    <section className="stack">
+      <SearchBar query={query} onQueryChange={setQuery} />
+      <p className="muted">
+        Showing {visibleJokes.length} of {jokes.length} jokes
+      </p>
+      <JokeList jokes={visibleJokes} />
+    </section>
+  );
+}
+
+export default JokeSearch;
+</script>
+        <p><code>visibleJokes</code> is <strong>not</strong> state. It's worked out from <code>jokes</code> and <code>query</code> on every render, so it can never fall out of sync.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Try it</h4>
+        <p>Put <code>&lt;JokeSearch /&gt;</code> in App and type "bug", then "state". The count and the list update together on every key press.</p>
+      </div>
+    </li>
+  </ol>
+
+  <aside class="callout callout-break">
+    <p class="callout-title">Think it through</p>
+    <p>What if <code>SearchBar</code> kept <code>query</code> in its own <code>useState</code>? <code>JokeList</code> is its sibling, so it would have no way to read it. That's why state goes up to the closest common parent.</p>
+  </aside>
+
+  <aside class="callout callout-level">
+    <p class="callout-title">Level up</p>
+    <ul>
+      <li>Add category buttons. Load <a data-api="/api/jokes/categories" target="_blank" rel="noopener"></a>, keep a <code>category</code> state in <code>JokeSearch</code> (start it at <code>"all"</code>), show one <code>&lt;button className="chip"&gt;</code> per category, and give the selected one the <code>active</code> class. Filter by category <em>and</em> text.</li>
+      <li>When nothing matches, show <em>No jokes match “xyz”.</em> instead of an empty list.</li>
+    </ul>
+  </aside>
+
+  <div class="helpers">
+    <div class="hints">
+      <h4 class="helper-title">Stuck?</h4>
+      <ol class="hint-list">
+        <li><p>You can pass the setter itself as the prop: <code>onQueryChange={setQuery}</code>.</p></li>
+        <li><p><code>"Hello".toLowerCase().includes("ell")</code> is <code>true</code>. Lower-casing both sides makes the search ignore capitals.</p></li>
+        <li><p>An empty search matches everything, because every string includes <code>""</code>.</p></li>
+        <li><p>Filter by category first: <code>category === "all" || joke.category === category</code>.</p></li>
+      </ol>
+      <button class="gbtn hint-btn" type="button">Show a hint</button>
+    </div>
+    <details class="solution">
+      <summary>Show the solution <span>Give it a real try first.</span></summary>
+      <div class="solution-body">
+        <p>The three files in the steps are the full solution.</p>
+      </div>
+    </details>
+    <div class="quiz">
+      <h4 class="helper-title">Quick check</h4>
+      <p class="quiz-q">SearchBar and JokeList both need the search text. Where should it live?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" type="button">In SearchBar, since that's where you type</button>
+        <button class="quiz-opt" type="button">In JokeList, since that's where it's used</button>
+        <button class="quiz-opt" type="button">In both, kept in sync with an effect</button>
+        <button class="quiz-opt" type="button" data-correct>In JokeSearch, their closest common parent</button>
+      </div>
+      <p class="quiz-feedback" aria-live="polite"></p>
+      <p class="quiz-explain">State lives in the lowest component that every user of it sits under. Two copies kept in sync is exactly the "out of sync" bug from section 1 of the notes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUILD 7
+     ============================================================ -->
+<section class="build c-red" id="build-7">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">7</div>
+    <div>
+      <h2 class="build-title">Campus store</h2>
+      <ul class="parts" aria-label="Parts used">
+        <li class="part c-red">Arrays in state</li>
+        <li class="part c-red">Replace, don't modify</li>
+        <li class="part c-red">Calculated values</li>
+      </ul>
+    </div>
+  </header>
+  <div class="intro">
+    <p>Add snacks and stationery to a cart and see the total. You'll practise the habit from section 7 of the notes, <em>replace, don't modify</em>, and see why the total is not state.</p>
+  </div>
+
+  <figure class="model" data-preview="store"></figure>
+
+  <h3 class="section-title">Steps</h3>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Load and show the products</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/CampusStore.jsx">
+import { useEffect, useState } from "react";
+import { API_URL } from "../api";
+
+function CampusStore() {
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/products`)
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+  }, []);
+
+  return (
+    <section className="store">
+      <div className="grid">
+        {products.map((product) => (
+          <article key={product.id} className="card stack">
+            <span className="emoji">{product.emoji}</span>
+            <h3>{product.name}</h3>
+            <p className="muted">₹{product.price}</p>
+            <button className="btn" onClick={() => addToCart(product)}>
+              Add to cart
+            </button>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default CampusStore;
+</script>
+        <p>It won't work until the next step adds <code>addToCart</code>. Put <code>&lt;CampusStore /&gt;</code> in App.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Add to the cart, the right way</h4>
+        <p>Add this inside the component, above the <code>return</code>:</p>
+<script type="text/plain" data-code="jsx">
+  function addToCart(product) {
+    setCart([...cart, { ...product, quantity: 1 }]);
+  }
+</script>
+        <p><code>[...cart, x]</code> makes a brand-new array with everything from <code>cart</code> plus <code>x</code>. <code>{ ...product, quantity: 1 }</code> makes a new object: a copy of the product with one extra field.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Same item twice? Raise the quantity</h4>
+<script type="text/plain" data-code="jsx">
+  function addToCart(product) {
+    const alreadyInCart = cart.some((item) => item.id === product.id);
+
+    if (alreadyInCart) {
+      setCart(
+        cart.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
+  }
+</script>
+        <p><code>map</code> builds a new array. The matching item is swapped for a new object with <code>quantity + 1</code>; everything else is kept as it is. The old array is never touched.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Show the cart and let items be removed</h4>
+<script type="text/plain" data-code="jsx">
+  function removeFromCart(id) {
+    setCart(cart.filter((item) => item.id !== id));
+  }
+</script>
+        <p>Then add the cart next to the grid, inside <code>&lt;section className="store"&gt;</code>:</p>
+<script type="text/plain" data-code="jsx">
+      <aside className="card">
+        <h3>🛒 Your cart</h3>
+        {cart.length === 0 && <p className="muted">Nothing here yet. Add something tasty.</p>}
+        <ul className="list">
+          {cart.map((item) => (
+            <li key={item.id} className="cart-item">
+              <span>
+                {item.emoji} {item.name} × {item.quantity}
+              </span>
+              <span>₹{item.price * item.quantity}</span>
+              <button className="btn btn-secondary btn-small" onClick={() => removeFromCart(item.id)}>
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
+      </aside>
+</script>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Work out the total</h4>
+        <p>Above the <code>return</code>:</p>
+<script type="text/plain" data-code="jsx">
+  const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+</script>
+        <p>And at the bottom of the cart: <code>&lt;p className="cart-total"&gt;{itemCount} items, ₹{total}&lt;/p&gt;</code>.</p>
+        <p>The total is calculated from <code>cart</code> on every render. If it were its own state, you'd have to remember to update it in add, in remove, and in every feature you add later.</p>
+      </div>
+    </li>
+  </ol>
+
+  <aside class="callout callout-break">
+    <p class="callout-title">Try breaking it</p>
+    <p>Change <code>addToCart</code> to modify the old array instead:</p>
+<script type="text/plain" data-code="jsx">
+  function addToCart(product) {
+    cart.push({ ...product, quantity: 1 });
+    setCart(cart);
+  }
+</script>
+    <p>Click <strong>Add to cart</strong>: nothing appears. You changed the old array and handed React the same array back, so it saw nothing new. Put the right version back.</p>
+  </aside>
+
+  <aside class="callout callout-level">
+    <p class="callout-title">Level up</p>
+    <ul>
+      <li>Add a <strong>−</strong> button that lowers the quantity, and removes the item when it reaches 0.</li>
+      <li>Split the page into <code>ProductGrid</code> and <code>Cart</code> components. One adds to the cart and one shows it, so where does <code>cart</code> live? Pass <code>addToCart</code> and <code>removeFromCart</code> down as props.</li>
+      <li>Show "Add ₹120 more for a free sticker" until the total reaches ₹500. Calculate it; don't store it.</li>
+    </ul>
+  </aside>
+
+  <div class="helpers">
+    <div class="hints">
+      <h4 class="helper-title">Stuck?</h4>
+      <ol class="hint-list">
+        <li><p><code>[...cart]</code> copies an array and <code>{ ...item }</code> copies an object. Put your change after the copy: <code>{ ...item, quantity: 2 }</code>.</p></li>
+        <li><p><code>.some()</code> answers yes or no: is there any item that matches?</p></li>
+        <li><p><code>reduce</code> starts at <code>0</code> (its last argument) and adds each item's amount to the running sum.</p></li>
+      </ol>
+      <button class="gbtn hint-btn" type="button">Show a hint</button>
+    </div>
+    <details class="solution">
+      <summary>Show the solution <span>Give it a real try first.</span></summary>
+      <div class="solution-body">
+<script type="text/plain" data-code="jsx" data-file="src/components/CampusStore.jsx" data-solution>
+import { useEffect, useState } from "react";
+import { API_URL } from "../api";
+
+function CampusStore() {
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/products`)
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+  }, []);
+
+  function addToCart(product) {
+    const alreadyInCart = cart.some((item) => item.id === product.id);
+
+    if (alreadyInCart) {
+      setCart(
+        cart.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
+  }
+
+  function removeFromCart(id) {
+    setCart(cart.filter((item) => item.id !== id));
+  }
+
+  const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  return (
+    <section className="store">
+      <div className="grid">
+        {products.map((product) => (
+          <article key={product.id} className="card stack">
+            <span className="emoji">{product.emoji}</span>
+            <h3>{product.name}</h3>
+            <p className="muted">₹{product.price}</p>
+            <button className="btn" onClick={() => addToCart(product)}>
+              Add to cart
+            </button>
+          </article>
+        ))}
+      </div>
+
+      <aside className="card">
+        <h3>🛒 Your cart</h3>
+        {cart.length === 0 && <p className="muted">Nothing here yet. Add something tasty.</p>}
+        <ul className="list">
+          {cart.map((item) => (
+            <li key={item.id} className="cart-item">
+              <span>
+                {item.emoji} {item.name} × {item.quantity}
+              </span>
+              <span>₹{item.price * item.quantity}</span>
+              <button className="btn btn-secondary btn-small" onClick={() => removeFromCart(item.id)}>
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
+        <p className="cart-total">
+          {itemCount} items, ₹{total}
+        </p>
+      </aside>
+    </section>
+  );
+}
+
+export default CampusStore;
+</script>
+      </div>
+    </details>
+    <div class="quiz">
+      <h4 class="helper-title">Quick check</h4>
+      <p class="quiz-q">In a shopping cart, should the total price be its own piece of state?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" type="button">Yes, and update it every time the cart changes</button>
+        <button class="quiz-opt" type="button" data-correct>No. Calculate it from the cart while rendering</button>
+        <button class="quiz-opt" type="button">Yes, but set it inside a <code>useEffect</code></button>
+        <button class="quiz-opt" type="button">No, ask the API for it</button>
+      </div>
+      <p class="quiz-feedback" aria-live="polite"></p>
+      <p class="quiz-explain">If you can work a value out from other data, it isn't state. Calculating it means it can never disagree with the cart.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUILD 8
+     ============================================================ -->
+<section class="build c-green" id="build-8">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">8</div>
+    <div>
+      <h2 class="build-title">Quote of the moment</h2>
+      <ul class="parts" aria-label="Parts used">
+        <li class="part c-green">Effect cleanup</li>
+        <li class="part c-green">Timers</li>
+        <li class="part c-green">Dependency list</li>
+      </ul>
+    </div>
+  </header>
+  <div class="intro">
+    <p>A quote that changes every ten seconds, with a pause button. A timer keeps going until someone stops it, so this build is about cleaning up after yourself: when you leave a room, switch off the fan. Notes: section 8, "Cleaning up".</p>
+  </div>
+
+  <figure class="model" data-preview="quote" data-note="A new quote every 10 seconds while this is on screen."></figure>
+
+  <h3 class="section-title">Steps</h3>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Two pieces of state</h4>
+<script type="text/plain" data-code="jsx" data-file="src/components/QuoteOfTheMoment.jsx (top of the file)">
+import { useEffect, useState } from "react";
+import { API_URL } from "../api";
+
+function QuoteOfTheMoment() {
+  const [quote, setQuote] = useState(null);
+  const [paused, setPaused] = useState(false);
+</script>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Start a timer, and clean it up</h4>
+<script type="text/plain" data-code="jsx">
+  useEffect(() => {
+    if (paused) return;
+
+    function loadQuote() {
+      fetch(`${API_URL}/api/quotes/random`)
+        .then((response) => response.json())
+        .then((data) => setQuote(data));
+    }
+
+    loadQuote();
+    const timerId = setInterval(loadQuote, 10000);
+
+    return () => clearInterval(timerId);
+  }, [paused]);
+</script>
+        <p>The function you return is the <strong>cleanup</strong>. React calls it before running the effect again (when <code>paused</code> changes) and when the component leaves the screen.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Show the quote and a pause button</h4>
+<script type="text/plain" data-code="jsx">
+  return (
+    <section className="card">
+      {quote === null ? (
+        <p className="muted">Finding a quote…</p>
+      ) : (
+        <blockquote className="quote">
+          <p>“{quote.text}”</p>
+          <footer>{quote.author}</footer>
+        </blockquote>
+      )}
+      <button className="btn btn-secondary" onClick={() => setPaused(!paused)}>
+        {paused ? "▶ Resume" : "⏸ Pause"}
+      </button>
+    </section>
+  );
+}
+
+export default QuoteOfTheMoment;
+</script>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Watch the timer in the Network tab</h4>
+        <p>Put it in App and open DevTools → Network. A request every ten seconds. Pause: they stop. Resume: one straight away, then every ten seconds again.</p>
+      </div>
+    </li>
+  </ol>
+
+  <aside class="callout callout-break">
+    <p class="callout-title">Try breaking it</p>
+    <p>Delete the <code>return () =&gt; clearInterval(timerId);</code> line. Click Pause and Resume a few times, then watch the Network tab: requests pile up, because every old timer is still running. Put the cleanup back.</p>
+  </aside>
+
+  <aside class="callout callout-level">
+    <p class="callout-title">Level up</p>
+    <ul>
+      <li><strong>Digital clock.</strong> Build a <code>LiveClock</code> with a <code>time</code> state that starts at <code>useState(() =&gt; new Date())</code>, a <code>setInterval</code> that sets a new <code>Date</code> every 1000 ms, a cleanup, and <code>time.toLocaleTimeString()</code> on screen.</li>
+      <li><strong>Fix a sneaky bug in Build 5.</strong> Switch cities quickly and an older, slower answer can arrive last and show the wrong city. A cleanup that sets an <code>ignore</code> flag throws stale answers away:</li>
+    </ul>
+<script type="text/plain" data-code="jsx" data-file="src/components/WeatherWidget.jsx (second effect)">
+  useEffect(() => {
+    let ignore = false;
+
+    fetch(`${API_URL}/api/weather?city=${city}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (!ignore) setWeather(data);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [city]);
+</script>
+  </aside>
+
+  <div class="helpers">
+    <div class="hints">
+      <h4 class="helper-title">Stuck?</h4>
+      <ol class="hint-list">
+        <li><p><code>setInterval</code> returns an id. <code>clearInterval(id)</code> stops that one timer.</p></li>
+        <li><p>Return the cleanup from the effect itself, not from <code>loadQuote</code>.</p></li>
+        <li><p><code>if (paused) return;</code> leaves the effect early, so no timer starts while paused.</p></li>
+      </ol>
+      <button class="gbtn hint-btn" type="button">Show a hint</button>
+    </div>
+    <details class="solution">
+      <summary>Show the solution <span>Give it a real try first.</span></summary>
+      <div class="solution-body">
+<script type="text/plain" data-code="jsx" data-file="src/components/QuoteOfTheMoment.jsx" data-solution>
+import { useEffect, useState } from "react";
+import { API_URL } from "../api";
+
+function QuoteOfTheMoment() {
+  const [quote, setQuote] = useState(null);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+
+    function loadQuote() {
+      fetch(`${API_URL}/api/quotes/random`)
+        .then((response) => response.json())
+        .then((data) => setQuote(data));
+    }
+
+    loadQuote();
+    const timerId = setInterval(loadQuote, 10000);
+
+    return () => clearInterval(timerId);
+  }, [paused]);
+
+  return (
+    <section className="card">
+      {quote === null ? (
+        <p className="muted">Finding a quote…</p>
+      ) : (
+        <blockquote className="quote">
+          <p>“{quote.text}”</p>
+          <footer>{quote.author}</footer>
+        </blockquote>
+      )}
+      <button className="btn btn-secondary" onClick={() => setPaused(!paused)}>
+        {paused ? "▶ Resume" : "⏸ Pause"}
+      </button>
+    </section>
+  );
+}
+
+export default QuoteOfTheMoment;
+</script>
+        <p>And the clock from the level-up:</p>
+<script type="text/plain" data-code="jsx" data-file="src/components/LiveClock.jsx" data-solution>
+import { useEffect, useState } from "react";
+
+function LiveClock() {
+  const [time, setTime] = useState(() => new Date());
+
+  useEffect(() => {
+    const timerId = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(timerId);
+  }, []);
+
+  return <p className="card big">{time.toLocaleTimeString()}</p>;
+}
+
+export default LiveClock;
+</script>
+      </div>
+    </details>
+    <div class="quiz">
+      <h4 class="helper-title">Quick check</h4>
+      <p class="quiz-q">An effect starts a <code>setInterval</code> but never returns a cleanup. What happens when the effect runs again?</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" type="button">React stops the old timer for you</button>
+        <button class="quiz-opt" type="button" data-correct>The old timer keeps running, so timers pile up</button>
+        <button class="quiz-opt" type="button">The page crashes straight away</button>
+        <button class="quiz-opt" type="button">Nothing, because an interval only runs once</button>
+      </div>
+      <p class="quiz-feedback" aria-live="polite"></p>
+      <p class="quiz-explain">React doesn't know what your effect started. Only your cleanup can stop it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUILD 9
+     ============================================================ -->
+<section class="build c-blue" id="build-9">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">9</div>
+    <div>
+      <h2 class="build-title">Capstone: Joke Hub</h2>
+      <ul class="parts" aria-label="Parts used">
+        <li class="part c-yellow">Components</li>
+        <li class="part c-blue">Props</li>
+        <li class="part c-red">State</li>
+        <li class="part c-red">Lifting state up</li>
+        <li class="part c-green">Effects</li>
+      </ul>
+    </div>
+  </header>
+  <div class="intro">
+    <p>Put every brick together. This time there's no step-by-step code: you get the requirements, a suggested component tree and some hints. Tick each requirement off as you meet it, then show your Hub to your instructor.</p>
+  </div>
+
+  <figure class="model" data-preview="hub" data-note="Save a few jokes, then reload this page. They're still there."></figure>
+
+  <h3 class="section-title">Requirements</h3>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Category buttons</h4>
+        <p>Load <a data-api="/api/jokes/categories" target="_blank" rel="noopener"></a> and show a <code>chip</code> button for each one, plus "any". The selected one has the <code>active</code> class.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">A joke from the chosen category</h4>
+        <p>A "Get a joke" button loads <code>/api/jokes/random?category=food</code> (or whichever is selected). With "any", leave the category out.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Hidden punchline</h4>
+        <p>Show the joke with your <code>JokeCard</code> from Build 3, so the punchline stays hidden until clicked. A new joke starts hidden again.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Save favourites</h4>
+        <p>A "⭐ Save" button adds the current joke to a favourites list under it. Saving the same joke twice does nothing. Each favourite has a Remove button.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Count in the header</h4>
+        <p>The Header shows how many jokes are saved, like "⭐ 3 saved".</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-body">
+        <h4 class="step-title">Favourites survive a refresh</h4>
+        <p>Save a few, reload the page, and they're still there.</p>
+      </div>
+    </li>
+  </ol>
+
+  <h3 class="section-title">Suggested component tree</h3>
+<div class="tree">App                 <em>owns favourites</em>
+├─ Header           <em>gets the number of favourites</em>
+├─ JokeHub          <em>owns categories, category and joke; gets onSave</em>
+│  └─ JokeCard      <em>from Build 3</em>
+├─ Favourites       <em>gets favourites and onRemove</em>
+└─ Footer</div>
+
+  <div class="helpers">
+    <div class="hints">
+      <h4 class="helper-title">Stuck?</h4>
+      <ol class="hint-list">
+        <li><p>Where does each piece of state live? Ask who needs it. Header, JokeHub and Favourites all need <code>favourites</code>, so it lives in App and goes down as props, along with functions to change it.</p></li>
+        <li><p>Fetching a joke happens because of a click, so it belongs in the click handler. You only need an effect for loading the categories when the Hub first appears.</p></li>
+        <li><p>Skip duplicates: <code>if (favourites.some((saved) =&gt; saved.id === joke.id)) return;</code></p></li>
+        <li><p>A new joke should start with its punchline hidden. Give the card a key: <code>&lt;JokeCard key={joke.id} … /&gt;</code>. A new key tells React it's a different card, so its state starts fresh.</p></li>
+        <li>
+          <p>Saving to the browser uses <code>localStorage</code>, which only stores text, hence <code>JSON</code>:</p>
+<script type="text/plain" data-code="jsx" data-file="src/App.jsx (part of it)">
+const [favourites, setFavourites] = useState(() => {
+  const saved = localStorage.getItem("favourites");
+  return saved ? JSON.parse(saved) : [];
+});
+
+useEffect(() => {
+  localStorage.setItem("favourites", JSON.stringify(favourites));
+}, [favourites]);
+</script>
+          <p>The function you pass to <code>useState</code> runs only on the very first render, so the saved list is read once.</p>
+        </li>
+      </ol>
+      <button class="gbtn hint-btn" type="button">Show a hint</button>
+    </div>
+  </div>
+
+  <h3 class="section-title">More to build on your own</h3>
+  <ul class="ideas">
+    <li><strong>Team directory</strong><span>Fetch every profile and filter by skill with chips. Uses <code>/api/profiles</code>.</span></li>
+    <li><strong>Three-city dashboard</strong><span>Give WeatherWidget a <code>city</code> prop and show three side by side.</span></li>
+    <li><strong>Show / hide password</strong><span>One true/false state that switches an input between <code>password</code> and <code>text</code>.</span></li>
+    <li><strong>To-do list</strong><span>The walkthrough from section 9 of the notes, saved with <code>localStorage</code>. No API needed.</span></li>
+  </ul>
+</section>
+
+<!-- ============================================================
+     API REFERENCE
+     ============================================================ -->
+<section class="build c-grey" id="api">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">{ }</div>
+    <div>
+      <h2 class="build-title">Class API</h2>
+    </div>
+  </header>
+  <div class="intro">
+    <p>Every endpoint answers <code>GET</code> requests with JSON, so you can open any of them in the browser. Lists come back as plain arrays; single things come back as objects. Open one and press <strong>Send request</strong> to see the answer.</p>
+  </div>
+
+  <div class="endpoints" id="endpoints"></div>
+
+  <div class="helpers-grid">
+    <aside class="callout callout-note">
+      <p class="callout-title">Slow it down: <code>?delay=2000</code></p>
+      <p>Add it to any address and the API waits that many milliseconds (up to 5000) before answering. Perfect for checking your loading messages.</p>
+    </aside>
+    <aside class="callout callout-break">
+      <p class="callout-title">Make it fail: <code>?fail=true</code></p>
+      <p>Add it to any address to get a 500 error with an <code>error</code> message. Use it to test what your app shows when things go wrong.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============================================================
+     HELP
+     ============================================================ -->
+<section class="build c-red" id="help">
+  <header class="build-head">
+    <div class="build-num" aria-hidden="true">?</div>
+    <div>
+      <h2 class="build-title">When something breaks</h2>
+    </div>
+  </header>
+  <div class="intro">
+    <p>First, open DevTools (<kbd>F12</kbd>) and read the first red message in the Console. Then find it below.</p>
+  </div>
+
+  <details class="faq">
+    <summary>"Failed to fetch", or a CORS error</summary>
+    <div class="faq-body">
+      <p>The browser couldn't reach the API. Check <code>API_URL</code> in <code>src/api.js</code>: it should match the address at the top of this page exactly, with no slash at the end. If the dot next to it is red, the API itself is down, so tell your instructor.</p>
+      <p>If the API is on a free host, it may fall asleep when nobody uses it. The first request can then take up to a minute; after that it's quick.</p>
+    </div>
+  </details>
+  <details class="faq">
+    <summary>Cannot read properties of null (reading '…')</summary>
+    <div class="faq-body">
+      <p>You're reading from data that hasn't arrived yet. On the first render your state is still <code>null</code>. Return a loading message while it's <code>null</code>, as in Build 4.</p>
+    </div>
+  </details>
+  <details class="faq">
+    <summary>Objects are not valid as a React child</summary>
+    <div class="faq-body">
+      <p>You put a whole object in JSX, like <code>{joke}</code>. React can show text and numbers, not objects. Show a field instead: <code>{joke.setup}</code>.</p>
+    </div>
+  </details>
+  <details class="faq">
+    <summary>Each child in a list should have a unique "key" prop</summary>
+    <div class="faq-body">
+      <p>Every element you return from <code>.map()</code> needs <code>key={something unique}</code>, usually an id from the data.</p>
+    </div>
+  </details>
+  <details class="faq">
+    <summary>Too many re-renders</summary>
+    <div class="faq-body">
+      <p>You're calling a setter while drawing, often <code>onClick={setLikes(likes + 1)}</code>. Wrap it in a function: <code>onClick={() =&gt; setLikes(likes + 1)}</code>.</p>
+    </div>
+  </details>
+  <details class="faq">
+    <summary>I changed a variable but the screen didn't update</summary>
+    <div class="faq-body">
+      <p>Only state changes made through a setter make React redraw. For arrays and objects, hand the setter a new copy instead of changing the old one (Build 7).</p>
+    </div>
+  </details>
+  <details class="faq">
+    <summary>My effect runs over and over</summary>
+    <div class="faq-body">
+      <p>Check the dependency list. No list means "after every render". If the effect sets a piece of state that's also in its list, it triggers itself.</p>
+    </div>
+  </details>
+  <details class="faq">
+    <summary>Every request shows up twice in the Network tab</summary>
+    <div class="faq-body">
+      <p>That's React's development mode running effects twice on purpose, to catch missing cleanups. It's normal, and it doesn't happen in a built app.</p>
+    </div>
+  </details>
+  <details class="faq">
+    <summary>The page is blank and there's no error</summary>
+    <div class="faq-body">
+      <p>Check that the terminal running <code>npm run dev</code> is still open, that you're on the address it printed, and that <code>App.jsx</code> ends with <code>export default App;</code>.</p>
+    </div>
+  </details>
+
+  <p class="page-foot">React Build Book. Your ticks are saved in this browser only, so they won't follow you to another computer.</p>
+</section>
+
+</main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>window.Prism = { manual: true };</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>

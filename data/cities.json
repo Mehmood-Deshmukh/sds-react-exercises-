@@ -1,0 +1,19 @@
+[
+  { "name": "Mumbai", "country": "India", "temperature": 30, "swing": 3, "humidity": 75, "conditions": ["Sunny", "Partly cloudy", "Humid", "Rainy"] },
+  { "name": "Delhi", "country": "India", "temperature": 28, "swing": 7, "humidity": 45, "conditions": ["Sunny", "Hazy", "Partly cloudy", "Windy"] },
+  { "name": "Bengaluru", "country": "India", "temperature": 24, "swing": 3, "humidity": 65, "conditions": ["Partly cloudy", "Cloudy", "Rainy", "Sunny"] },
+  { "name": "Chennai", "country": "India", "temperature": 31, "swing": 3, "humidity": 72, "conditions": ["Sunny", "Humid", "Partly cloudy", "Thunderstorm"] },
+  { "name": "Kolkata", "country": "India", "temperature": 29, "swing": 4, "humidity": 78, "conditions": ["Humid", "Rainy", "Partly cloudy", "Thunderstorm"] },
+  { "name": "Hyderabad", "country": "India", "temperature": 29, "swing": 4, "humidity": 50, "conditions": ["Sunny", "Partly cloudy", "Windy"] },
+  { "name": "Pune", "country": "India", "temperature": 26, "swing": 4, "humidity": 60, "conditions": ["Partly cloudy", "Sunny", "Rainy"] },
+  { "name": "Jaipur", "country": "India", "temperature": 30, "swing": 7, "humidity": 35, "conditions": ["Sunny", "Hazy", "Windy"] },
+  { "name": "Kochi", "country": "India", "temperature": 28, "swing": 2, "humidity": 82, "conditions": ["Rainy", "Humid", "Thunderstorm", "Cloudy"] },
+  { "name": "Guwahati", "country": "India", "temperature": 25, "swing": 4, "humidity": 80, "conditions": ["Rainy", "Cloudy", "Misty"] },
+  { "name": "Shimla", "country": "India", "temperature": 12, "swing": 5, "humidity": 60, "conditions": ["Misty", "Cloudy", "Sunny", "Snowy"] },
+  { "name": "Srinagar", "country": "India", "temperature": 10, "swing": 6, "humidity": 55, "conditions": ["Sunny", "Cloudy", "Snowy", "Windy"] },
+  { "name": "Dubai", "country": "UAE", "temperature": 35, "swing": 5, "humidity": 45, "conditions": ["Sunny", "Hazy", "Windy"] },
+  { "name": "London", "country": "UK", "temperature": 12, "swing": 4, "humidity": 78, "conditions": ["Cloudy", "Rainy", "Partly cloudy", "Misty"] },
+  { "name": "New York", "country": "USA", "temperature": 14, "swing": 7, "humidity": 60, "conditions": ["Sunny", "Cloudy", "Rainy", "Windy"] },
+  { "name": "Tokyo", "country": "Japan", "temperature": 18, "swing": 5, "humidity": 62, "conditions": ["Partly cloudy", "Sunny", "Rainy"] },
+  { "name": "Sydney", "country": "Australia", "temperature": 21, "swing": 5, "humidity": 65, "conditions": ["Sunny", "Partly cloudy", "Windy", "Rainy"] }
+]

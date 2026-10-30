@@ -1,0 +1,16 @@
+[
+  { "id": 1, "name": "Masala Chai", "price": 15, "emoji": "☕", "category": "food" },
+  { "id": 2, "name": "Vada Pav", "price": 20, "emoji": "🍔", "category": "food" },
+  { "id": 3, "name": "Veg Sandwich", "price": 45, "emoji": "🥪", "category": "food" },
+  { "id": 4, "name": "Cold Coffee", "price": 50, "emoji": "🥤", "category": "food" },
+  { "id": 5, "name": "Banana", "price": 10, "emoji": "🍌", "category": "food" },
+  { "id": 6, "name": "Notebook", "price": 60, "emoji": "📓", "category": "stationery" },
+  { "id": 7, "name": "Gel Pen", "price": 15, "emoji": "🖊️", "category": "stationery" },
+  { "id": 8, "name": "Geometry Box", "price": 120, "emoji": "📐", "category": "stationery" },
+  { "id": 9, "name": "Sticky Notes", "price": 40, "emoji": "🗒️", "category": "stationery" },
+  { "id": 10, "name": "Earphones", "price": 399, "emoji": "🎧", "category": "gadgets" },
+  { "id": 11, "name": "USB Drive 32 GB", "price": 349, "emoji": "💾", "category": "gadgets" },
+  { "id": 12, "name": "React Sticker", "price": 25, "emoji": "⚛️", "category": "merch" },
+  { "id": 13, "name": "Coding Club Hoodie", "price": 899, "emoji": "🧥", "category": "merch" },
+  { "id": 14, "name": "Steel Water Bottle", "price": 249, "emoji": "💧", "category": "merch" }
+]

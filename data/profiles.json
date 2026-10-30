@@ -1,0 +1,14 @@
+[
+  { "id": 1, "name": "Riya Sharma", "role": "Frontend Developer", "city": "Pune", "online": true, "skills": ["React", "CSS", "Figma"], "bio": "Turns design files into pages that feel right." },
+  { "id": 2, "name": "Arjun Mehta", "role": "Backend Developer", "city": "Ahmedabad", "online": false, "skills": ["Node.js", "Express", "PostgreSQL"], "bio": "Happiest when the API answers with a 200." },
+  { "id": 3, "name": "Meera Iyer", "role": "UI/UX Designer", "city": "Chennai", "online": true, "skills": ["Figma", "User research", "Accessibility"], "bio": "Designs for the person, not the pixel." },
+  { "id": 4, "name": "Kabir Khan", "role": "Mobile Developer", "city": "Hyderabad", "online": true, "skills": ["React Native", "Kotlin"], "bio": "Builds apps that fit in your pocket." },
+  { "id": 5, "name": "Ananya Rao", "role": "Data Analyst", "city": "Bengaluru", "online": false, "skills": ["Python", "SQL", "Charts"], "bio": "Finds the story hiding in spreadsheets." },
+  { "id": 6, "name": "Rohan Das", "role": "Game Developer", "city": "Kolkata", "online": true, "skills": ["Unity", "C#", "Blender"], "bio": "Spends weekends making tiny pixel games." },
+  { "id": 7, "name": "Sara Fernandes", "role": "QA Engineer", "city": "Goa", "online": false, "skills": ["Testing", "Playwright"], "bio": "Breaks things on purpose so users don't." },
+  { "id": 8, "name": "Vikram Singh", "role": "DevOps Engineer", "city": "Jaipur", "online": true, "skills": ["Docker", "Linux", "CI/CD"], "bio": "Ships code to servers while you sleep." },
+  { "id": 9, "name": "Priya Nair", "role": "Full-stack Developer", "city": "Kochi", "online": false, "skills": ["React", "Node.js", "MongoDB"], "bio": "Writes the button and the API it calls." },
+  { "id": 10, "name": "Aditya Kulkarni", "role": "Cloud Engineer", "city": "Mumbai", "online": true, "skills": ["AWS", "Terraform"], "bio": "Keeps the servers up and the bills down." },
+  { "id": 11, "name": "Zoya Ahmed", "role": "Technical Writer", "city": "Lucknow", "online": false, "skills": ["Docs", "Markdown", "Teaching"], "bio": "Explains hard things in plain words." },
+  { "id": 12, "name": "Nikhil Joshi", "role": "Student", "city": "Nagpur", "online": true, "skills": ["HTML", "CSS", "JavaScript"], "bio": "Just started React. Building one component at a time." }
+]

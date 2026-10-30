@@ -1,0 +1,15 @@
+{
+  "name": "react-build-book",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interactive React exercises for beginners, plus the small JSON API they fetch from.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
